@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block 'nav' %}
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand bg-dark d-flex">
+        <h3 class="text-light justify-content-start mx-2">User authentication system</h3>
+        <div class="d-flex justify-content-end" style="margin: 0% 0% 0% 45%;">
+            <p class="text-light" style="margin: 3% 0% 3% 0%;">Welcome, <b><span style="text-transform: capitalize;">{{user.first_name}}</span></b></p>
+            <a href="{%url 'logout'%}"class="nav-item btn btn-outline-primary mx-2 px-3">Logout</a>
+        </div>
+    </nav>
+    {% else %}
+    <nav class="navbar navbar-expand bg-dark d-flex">
+        <h3 class="text-light justify-content-start mx-2">User authentication system</h3>
+        <div style="margin:0% 0% 0% 36%;">
+        <a href="{%url 'home'%}" class="nav-item btn btn-outline-primary mx-2 px-3">Home</a>
+        <a href="{%url 'signup'%}"class="nav-item btn btn-outline-success mx-2 px-3">Signup</a>
+        <a href="{%url 'login'%}"class="nav-item btn btn-outline-info mx-2 px-3">Login</a>
+        </div>
+    </nav>
+    {% endif %}
+    <br>
+{% endblock 'nav' %}
+{% block 'section1' %}
+    {% if user.is_authenticated %}
+        <div style="margin: 0% 30% 0% 30%; text-align: center;">
+            {% include 'messages.html' %}
+        </div>
+        <h4>Welcome to your Dashboard <span style="text-transform:capitalize;">{{user.first_name}} {{user.last_name}}</span></h4>
+    {% else %}
+        <h4>Login to view your Dashboard.....</h4>
+    {% endif %}
+{% endblock 'section1' %}

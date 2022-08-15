@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block 'section1' %}
+<div style="margin:0% 28% 0% 25%; text-align: center;">
+    {% include 'messages.html' %}
+</div>
+{% load crispy_forms_tags %}
+<div class="text-bg-dark card shadow" style="margin: 0% 30% 0% 30%; padding: 2% 3% 2% 3%;">
+    
+    <form action="/signup/" method='post'>
+        <h1>Signup</h1><br>
+        {% csrf_token %}
+        {{ signup.first_name | as_crispy_field }}
+        <br>
+        {{ signup.last_name | as_crispy_field }}
+        <br>
+        {{ signup.username | as_crispy_field }}
+        <br>
+        {{ signup.email | as_crispy_field }}
+        <br>
+        {{ signup.password1 | as_crispy_field }}
+        <br>
+        {{ signup.password2 | as_crispy_field }}
+        <br>
+        <input class="btn btn-primary"type="submit" value="Submit">
+    </form>
+</div>
+<br>
+{% endblock 'section1' %}
